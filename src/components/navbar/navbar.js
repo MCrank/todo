@@ -1,6 +1,23 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import $ from 'jquery';
 import 'bootstrap';
 import './navbar.scss';
+
+const navbarEvents = () => {
+  $('#nav-logout').on('click', () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        $('#nav-logout').hide();
+        $('#nav-login').show();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+};
 
 const buildNavbar = () => {
   const domString = `
@@ -22,6 +39,7 @@ const buildNavbar = () => {
   </nav>
   `;
   $('#nav-bar').html(domString);
+  navbarEvents();
 };
 
 export default { buildNavbar };
