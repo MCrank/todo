@@ -1,5 +1,9 @@
-// import $ from 'jquery';
 import 'bootstrap';
 import './index.scss';
+import navbar from './components/navbar/navbar';
 
-console.log('Index.JS');
+const initApp = () => {
+  navbar.buildNavbar();
+};
+
+initApp();
