@@ -1,0 +1,22 @@
+{
+  "task1": {
+    "task": "Walk the dog",
+    "isCompleted": false
+  },
+  "task2": {
+    "task": "Wash the dishes",
+    "isCompleted": true
+  },
+  "task3": {
+    "task": "Pick up groceries",
+    "isCompleted": true
+  },
+  "task4": {
+    "task": "Fill up the car with gas",
+    "isCompleted": false
+  },
+  "task5": {
+    "task": "Go to the bank",
+    "isCompleted": true
+  }
+}
