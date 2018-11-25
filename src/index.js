@@ -12,9 +12,10 @@ import './index.scss';
 const initApp = () => {
   firebase.initializeApp(apiKeys.firebaseConfig);
   navbar.buildNavbar();
+  navbar.addTaskEvent();
   auth.authEvents();
   // Check Lgin status and if logged in show the task lists
-  authHelper.checkLoginStatus(tasks.taskPage);
+  authHelper.checkLoginStatus(tasks.initTaskPage);
 };
 
 initApp();

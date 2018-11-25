@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiKeys from '../../../../db/apiKeys.json';
+// import tasks from '../../tasks/tasks';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
@@ -23,4 +24,6 @@ const getAllTasks = () => new Promise((resolve, reject) => {
     });
 });
 
-export default { getAllTasks };
+const createTask = taskObj => axios.post(`${firebaseUrl}/tasks.json`, JSON.stringify(taskObj));
+
+export default { getAllTasks, createTask };
