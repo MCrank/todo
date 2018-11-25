@@ -3,12 +3,12 @@ import 'firebase/auth';
 
 import $ from 'jquery';
 
-const checkLoginStatus = () => {
+const checkLoginStatus = (initTaskPage) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log(user.displayName);
       $('#nav-login').hide();
       $('#nav-logout').show();
+      initTaskPage();
     } else {
       $('#nav-login').show();
       $('#nav-logout').hide();
@@ -16,4 +16,14 @@ const checkLoginStatus = () => {
   });
 };
 
-export default { checkLoginStatus };
+// Keeping this for now as I may use it later
+const isLoggedIn = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      return true;
+    }
+    return false;
+  });
+};
+
+export default { checkLoginStatus, isLoggedIn };

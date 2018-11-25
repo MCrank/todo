@@ -12,6 +12,7 @@ const navbarEvents = () => {
       .then(() => {
         $('#nav-logout').hide();
         $('#nav-login').show();
+        $('#tasks-container').html('');
       })
       .catch((err) => {
         console.error(err);
