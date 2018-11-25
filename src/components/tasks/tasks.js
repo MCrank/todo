@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import taskData from '../helpers/data/taskData';
 
-const printTasks = () => {
+const printTasks = (taskArray) => {
   let newDomString = '';
   newDomString = `
   <h1 class="text-center">Active Tasks</h1>
@@ -15,28 +15,27 @@ const printTasks = () => {
       </tr>
     </thead>
   `;
+  if (taskArray.length) {
+    taskArray.forEach((task) => {
+      newDomString += `
+      <tbody>
+        <tr>
+          <th scope="row">${task.id}</th>
+          <td>${task.task}</td>
+          <td class="text-center"><input type="checkbox" name="completed" id="complete-chk" /></td>
+          <td></td>
+        </tr>
+      </tbody>
+      <tbody>
+      `;
+    });
+  }
   newDomString += `
-  <tbody>
-    <tr class="">
-      <th scope="row">1</th>
-      <td>Walk the dog</td>
-      <td class="text-center"><input type="checkbox" name="completed" id="complete-chk" /></td>
-      <td></td>
-    </tr>
-    <tr class="">
-      <th scope="row">2</th>
-      <td>Walk the dog</td>
-      <td class="text-center"><input type="checkbox" name="completed" id="complete-chk" /></td>
-      <td></td>
-    </tr>
-  </tbody>
-  `;
-
-  newDomString += `
+    </tbody>
   </table>
   `;
 
-  $('#task-table').html(newDomString);
+  $('#active-task-table').html(newDomString);
 };
 
 const taskPage = () => {
@@ -46,8 +45,8 @@ const taskPage = () => {
       printTasks(taskArray);
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 };
 
-export default { printTasks, taskPage };
+export default { taskPage };

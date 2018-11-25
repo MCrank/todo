@@ -13,9 +13,8 @@ const initApp = () => {
   firebase.initializeApp(apiKeys.firebaseConfig);
   navbar.buildNavbar();
   auth.authEvents();
-  authHelper.checkLoginStatus();
-  tasks.printTasks();
-  tasks.taskPage();
+  // Check Lgin status and if logged in show the task lists
+  authHelper.checkLoginStatus(tasks.taskPage);
 };
 
 initApp();
