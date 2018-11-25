@@ -5,13 +5,13 @@ const printTasks = (taskArray) => {
   let newDomString = '';
   newDomString = `
   <h1 class="text-center">Active Tasks</h1>
-  <table class="table table-striped">
-    <thead>
+  <table class="table table-striped table-hover">
+    <thead class="thead-dark">
       <tr>
         <th scope="col" style="width: 10%">Task #</th>
         <th scope="col" style="width: 70%">Task Description</th>
         <th scope="col" style="width: 5%">Completed</th>
-        <th scope="col" style="width: 15%">Edit/Delete</th>
+        <th scope="col" style="width: 15%" class="text-center">Edit/Delete</th>
       </tr>
     </thead>
   `;
@@ -49,4 +49,19 @@ const taskPage = () => {
     });
 };
 
-export default { taskPage };
+const addNewTask = (evt) => {
+  if (evt.key === 'Enter') {
+    console.log('You pressed Enter');
+  }
+};
+
+const bindEvents = () => {
+  $('body').on('keypress', '#newTaskInput', addNewTask);
+  // $('body').on('click', '.delete-btn', deleteFriend);
+};
+
+const initTaskPage = () => {
+  taskPage();
+  bindEvents();
+};
+export default { initTaskPage };
