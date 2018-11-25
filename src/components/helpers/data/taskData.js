@@ -24,9 +24,6 @@ const getAllTasks = () => new Promise((resolve, reject) => {
     });
 });
 
-// const addNewFriend = friendObj =>
-// axios.post(`${firebaseUrl}/friends.json`, JSON.stringify(friendObj));
-
 const createTask = taskObj => axios.post(`${firebaseUrl}/tasks.json`, JSON.stringify(taskObj));
 
 export default { getAllTasks, createTask };

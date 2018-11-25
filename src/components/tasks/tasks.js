@@ -8,8 +8,8 @@ const printTasks = (taskArray) => {
   <table class="table table-striped table-hover">
     <thead class="thead-dark">
       <tr>
-        <th scope="col" style="width: 10%">Task #</th>
-        <th scope="col" style="width: 70%">Task Description</th>
+        <th scope="col" style="width: 20%">Task #</th>
+        <th scope="col" style="width: 60%">Task Description</th>
         <th scope="col" style="width: 5%">Completed</th>
         <th scope="col" style="width: 15%" class="text-center">Edit/Delete</th>
       </tr>
@@ -51,13 +51,18 @@ const taskPage = () => {
 
 const addNewTask = (evt) => {
   if (evt.key === 'Enter') {
-    console.log('You pressed Enter');
+    const newTaskobject = {
+      task: evt.target.value,
+      isCompleted: false,
+    };
+    taskData.createTask(newTaskobject);
+    $('#newTaskInput').val('');
+    taskPage();
   }
 };
 
 const bindEvents = () => {
   $('body').on('keypress', '#newTaskInput', addNewTask);
-  // $('body').on('click', '.delete-btn', deleteFriend);
 };
 
 const initTaskPage = () => {
