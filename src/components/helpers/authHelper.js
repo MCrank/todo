@@ -8,10 +8,12 @@ const checkLoginStatus = (initTaskPage) => {
     if (user) {
       $('#nav-login').hide();
       $('#nav-logout').show();
+      $('#nav-add-task').show();
       initTaskPage();
     } else {
       $('#nav-login').show();
       $('#nav-logout').hide();
+      $('#nav-add-task').hide();
     }
   });
 };
