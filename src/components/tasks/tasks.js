@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import taskData from '../helpers/data/taskData';
+import taskData from '../helpers/Data/taskData';
+import addEditTask from '../AddEditTask/addEditTask';
 import './tasks.scss';
 
 // Starting to wish I had broke this out into two functions for completed and not complated tasks
@@ -108,8 +109,25 @@ const completeTask = (evt) => {
     });
 };
 
-const editTask = () => {
-  console.log('You cliked Edit');
+const editTask = (evt) => {
+  if (evt.key === 'Enter') {
+    const taskId = evt.target.dataset.taskid;
+    const newTaskobject = {
+      task: evt.target.value,
+      isCompleted: false,
+    };
+    taskData
+      .updateTask(newTaskobject, taskId)
+      .then(() => {
+        $('#active-task-table').html('');
+        $('#closed-task-table').html('');
+        $('#new-task-input').html('');
+        taskPage();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 };
 
 const deleteTask = (evt) => {
@@ -124,13 +142,19 @@ const deleteTask = (evt) => {
     .catch((error) => {
       console.error(error);
     });
-  console.log('You clicked Delete', updateTaskId);
+};
+
+const editTaskInput = (evt) => {
+  $('#new-task-input').html('');
+  const editTaskId = $(evt.target).closest('tr')[0].dataset.taskid;
+  addEditTask.editTaskBuilder(evt, editTaskId);
 };
 
 const bindEvents = () => {
   $('body').on('keypress', '#newTaskInput', addNewTask);
+  $('body').on('keypress', '#editTaskInput', editTask);
   $('body').on('change', '.complete-chk', completeTask);
-  $('body').on('click', '.edit-task', editTask);
+  $('body').on('click', '.edit-task', editTaskInput);
   $('body').on('click', '.delete-task', deleteTask);
 };
 

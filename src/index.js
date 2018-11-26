@@ -1,10 +1,10 @@
 import firebase from 'firebase/app';
 import 'bootstrap';
 
-import navbar from './components/navbar/navbar';
-import auth from './components/auth/auth';
+import navbar from './components/Navbar/navbar';
+import auth from './components/Auth/auth';
 import authHelper from './components/helpers/authHelper';
-import tasks from './components/tasks/tasks';
+import tasks from './components/Tasks/tasks';
 
 import apiKeys from '../db/apiKeys.json';
 import './index.scss';
