@@ -51,7 +51,6 @@ const updateTask = (taskObj, taskId) => new Promise((resolve, reject) => {
   axios
     .put(`${firebaseUrl}/tasks/${taskId}.json`, JSON.stringify(taskObj))
     .then((results) => {
-      console.log(results.data);
       resolve(results);
     })
     .catch((error) => {
