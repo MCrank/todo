@@ -2,6 +2,8 @@ import $ from 'jquery';
 import taskData from '../helpers/data/taskData';
 import './tasks.scss';
 
+// Starting to wish I had broke this out into two functions for completed and not complated tasks
+//  May refactor later into two
 const printTasks = (taskArray, isCompleted) => {
   let newDomString = '';
   newDomString = `
@@ -27,7 +29,12 @@ const printTasks = (taskArray, isCompleted) => {
           <td class="text-center" style="${
   isCompleted === 'true' ? 'display:none;' : ''
 }"><input class="complete-chk" type="checkbox" name="completed"/></td>
-          <td></td>
+          <td class="d-flex justify-content-around">
+            <i class="edit-task fas fa-edit fa-lg text-success" style="cursor: pointer; ${
+  isCompleted === 'true' ? 'display:none;' : ''
+}"></i>
+            <i class="delete-task fas fa-trash-alt fa-lg text-danger" style="cursor: pointer;"></i>
+          </td>
         </tr>
       </tbody>
       `;
@@ -92,7 +99,6 @@ const completeTask = (evt) => {
   taskData
     .updateTask(taskObj, updateTaskId)
     .then(() => {
-      console.log('You made a put request');
       $('#active-task-table').html('');
       $('#closed-task-table').html('');
       taskPage();
@@ -102,9 +108,30 @@ const completeTask = (evt) => {
     });
 };
 
+const editTask = () => {
+  console.log('You cliked Edit');
+};
+
+const deleteTask = (evt) => {
+  const updateTaskId = $(evt.target).closest('tr')[0].dataset.taskid;
+  taskData
+    .deleteTask(updateTaskId)
+    .then(() => {
+      $('#active-task-table').html('');
+      $('#closed-task-table').html('');
+      taskPage();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  console.log('You clicked Delete', updateTaskId);
+};
+
 const bindEvents = () => {
   $('body').on('keypress', '#newTaskInput', addNewTask);
   $('body').on('change', '.complete-chk', completeTask);
+  $('body').on('click', '.edit-task', editTask);
+  $('body').on('click', '.delete-task', deleteTask);
 };
 
 const initTaskPage = () => {

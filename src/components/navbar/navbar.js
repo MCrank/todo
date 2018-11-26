@@ -45,7 +45,7 @@ const buildNavbar = () => {
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a id="nav-add-task" class="nav-link" href="#"><i class="far fa-plus-square fa-lg mx-1"></i>Add Task</a>
+          <a id="nav-add-task" class="nav-link" href="#"><i class="fas fa-plus-square fa-lg mx-1"></i>Add Task</a>
         </li>
         <li class="nav-item">
           <a id="nav-login" class="nav-link" href="#"><i class="fas fa-sign-in-alt fa-lg mx-1"></i>Login</a>
