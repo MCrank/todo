@@ -24,10 +24,45 @@ const getAllTasks = () => new Promise((resolve, reject) => {
     });
 });
 
+const getFilteredTasks = state => new Promise((resolve, reject) => {
+  const taskState = state === 'active' ? 'false' : 'true';
+  axios
+    .get(`${firebaseUrl}/tasks.json?orderBy="isCompleted"&equalTo=${taskState}`)
+    .then((results) => {
+      const taskObj = results.data;
+      const taskArray = [];
+      if (taskObj !== null) {
+        Object.keys(taskObj).forEach((taskId) => {
+          taskObj[taskId].id = taskId;
+          taskArray.push(taskObj[taskId]);
+        });
+      }
+      resolve(taskArray);
+    })
+    .catch((error) => {
+      console.error(error);
+      reject(error);
+    });
+});
+
 const createTask = taskObj => axios.post(`${firebaseUrl}/tasks.json`, JSON.stringify(taskObj));
 
-const updateTask = (taskObj, taskId) => {
-  axios.put(`${firebaseUrl}/tasks/${taskId}.json`, JSON.stringify(taskObj));
-};
+const updateTask = (taskObj, taskId) => new Promise((resolve, reject) => {
+  axios
+    .put(`${firebaseUrl}/tasks/${taskId}.json`, JSON.stringify(taskObj))
+    .then((results) => {
+      console.log(results.data);
+      resolve(results);
+    })
+    .catch((error) => {
+      console.error(error);
+      reject(error);
+    });
+});
 
-export default { getAllTasks, createTask, updateTask };
+export default {
+  getAllTasks,
+  createTask,
+  updateTask,
+  getFilteredTasks,
+};
