@@ -14,16 +14,17 @@ const addTaskBuilder = () => {
   $('#new-task-input').html(newTaskInput);
 };
 
-const editTaskBuilder = (evt) => {
+const editTaskBuilder = (evt, taskId) => {
   const editTaskName = $(evt.target)
     .closest('tr')
     .find('th')[0].innerHTML;
   console.log(editTaskName);
+  console.log(taskId);
   const editTaskInput = `
     <form>
       <div class="form-group w-100">
         <label for="editTaskInput">Task Name</label>
-        <input type="text" class="form-control w-100" id="editTaskInput" value="${editTaskName}" autofocus/>
+        <input type="text" class="form-control w-100" id="editTaskInput" data-taskId="${taskId}" value="${editTaskName}" autofocus/>
       </div>
     </form>
     `;

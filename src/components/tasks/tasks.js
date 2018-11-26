@@ -109,8 +109,9 @@ const completeTask = (evt) => {
     });
 };
 
-const editTask = (evt, taskId) => {
+const editTask = (evt) => {
   if (evt.key === 'Enter') {
+    const taskId = evt.target.dataset.taskid;
     const newTaskobject = {
       task: evt.target.value,
       isCompleted: false,
@@ -120,6 +121,7 @@ const editTask = (evt, taskId) => {
       .then(() => {
         $('#active-task-table').html('');
         $('#closed-task-table').html('');
+        $('#new-task-input').html('');
         taskPage();
       })
       .catch((error) => {
