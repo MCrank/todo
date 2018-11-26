@@ -60,9 +60,12 @@ const updateTask = (taskObj, taskId) => new Promise((resolve, reject) => {
     });
 });
 
+const deleteTask = taskId => axios.delete(`${firebaseUrl}/tasks/${taskId}.json`);
+
 export default {
   getAllTasks,
   createTask,
   updateTask,
   getFilteredTasks,
+  deleteTask,
 };
