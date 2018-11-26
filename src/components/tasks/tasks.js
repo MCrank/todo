@@ -124,7 +124,6 @@ const deleteTask = (evt) => {
     .catch((error) => {
       console.error(error);
     });
-  console.log('You clicked Delete', updateTaskId);
 };
 
 const bindEvents = () => {
