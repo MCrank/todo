@@ -26,4 +26,8 @@ const getAllTasks = () => new Promise((resolve, reject) => {
 
 const createTask = taskObj => axios.post(`${firebaseUrl}/tasks.json`, JSON.stringify(taskObj));
 
-export default { getAllTasks, createTask };
+const updateTask = (taskObj, taskId) => {
+  axios.put(`${firebaseUrl}/tasks/${taskId}.json`, JSON.stringify(taskObj));
+};
+
+export default { getAllTasks, createTask, updateTask };
