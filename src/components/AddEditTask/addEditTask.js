@@ -18,8 +18,6 @@ const editTaskBuilder = (evt, taskId) => {
   const editTaskName = $(evt.target)
     .closest('tr')
     .find('th')[0].innerHTML;
-  console.log(editTaskName);
-  console.log(taskId);
   const editTaskInput = `
     <form>
       <div class="form-group w-100">
