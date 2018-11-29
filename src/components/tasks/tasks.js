@@ -74,7 +74,7 @@ const taskPage = () => {
 };
 
 const addNewTask = (evt) => {
-  if (evt.key === 'Enter') {
+  if (evt.key === 'Enter' && evt.target.value.length > 0) {
     const newTaskobject = {
       task: evt.target.value,
       isCompleted: false,
