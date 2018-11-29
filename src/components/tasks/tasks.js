@@ -54,6 +54,7 @@ const printTasks = (taskArray, isCompleted) => {
 const taskPage = () => {
   $('#active-task-table').html('');
   $('#closed-task-table').html('');
+
   taskData
     .getFilteredTasks('active')
     .then((taskArray) => {
